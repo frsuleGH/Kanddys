@@ -1,0 +1,101 @@
+button {
+	border: none;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+mat-icon {
+	font-size: 22px;
+}
+
+mat-icon,
+.ICON,
+.FAV {
+	display: grid;
+	place-items: center;
+}
+
+.XR,
+.ICON,
+.LI {
+	border-radius: 8px;
+}
+
+.XR,
+.ICON,
+.FAV,
+.LI,
+.BLOCK {
+	background-color: rgba(70, 74, 69, 255);
+}
+
+.XR,
+.LI,
+.BLOCK {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ICON,
+.FAV {
+	width: 40px;
+	height: 40px;
+}
+
+.XL {
+	width: 100%;
+	padding: 12px;
+	border-radius: 24px;
+	background-color: rgba(151, 71, 255, 1);
+}
+
+.XR {
+	justify-content: center;
+	padding: 8px 16px;
+}
+
+.FAV {
+	border-radius: 50%;
+}
+
+.LI {
+	justify-content: space-between;
+	padding: 8px;
+}
+
+.MINI {
+	background-color: #fff;
+	border: none;
+	border-radius: 24px;
+	color: #000;
+	padding: 4px 12px;
+}
+
+.BLOCK {
+	padding: 12px;
+	border-radius: 12px;
+	justify-content: space-between;
+}
+
+.light {
+	color: #000;
+	background-color: #fff;
+}
+
+.active {
+	background-color: #fff;
+	color: #000;
+	padding: 10px 12px;
+}
+
+.status {
+	background-color: rgba(183, 181, 181, 1);
+}
+
+.disabled {
+	background-color: rgba(47, 51, 46, 255);
+	color: rgba(255, 255, 255, 0.7);
+}

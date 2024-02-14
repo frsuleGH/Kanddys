@@ -1,0 +1,7 @@
+<section>
+	<qrcode #qrCode [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+	<div>
+		<button (click)="send()">ENVIAR</button>
+		<button (click)="download()">DESCARGAR</button>
+	</div>
+</section>

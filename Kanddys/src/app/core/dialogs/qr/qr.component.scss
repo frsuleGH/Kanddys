@@ -1,0 +1,21 @@
+section {
+	background-color: rgba(24, 29, 23, 1);
+	padding: 12px;
+	display: grid;
+	place-items: center;
+	gap: 12px;
+}
+
+div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+button {
+	background-color: transparent;
+	border: none;
+	color: #ffffff;
+	font-size: 16px;
+}

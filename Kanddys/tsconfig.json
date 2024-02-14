@@ -1,0 +1,59 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"paths": {
+			"@env/*": ["src/environments/*"],
+
+			"@app/*": ["src/app/*"],
+
+			"@core/*": ["src/app/core/*"],
+
+			"@modules/*": ["src/app/modules/*"],
+
+			"@ecommerce/*": ["src/app/modules/ecommerce/*"],
+
+			"@ecommerce-shop/*": ["src/app/modules/ecommerce/pages/shop/*"],
+			"@ecommerce-product/*": ["src/app/modules/ecommerce/pages/product/*"],
+			"@ecommerce-cart/*": ["src/app/modules/ecommerce/pages/cart/*"],
+			"@ecommerce-form/*": ["src/app/modules/ecommerce/pages/form/*"],
+			"@ecommerce-traditional/*": ["src/app/modules/ecommerce/pages/traditional/*"],
+			"@ecommerce-virtual/*": ["src/app/modules/ecommerce/pages/virtual/*"],
+			"@ecommerce-address/*": ["src/app/modules/ecommerce/pages/address/*"],
+
+			"@merchant/*": ["src/app/modules/merchant/*"],
+			"@merchant-header/*": ["src/app/modules/merchant/components/header/*"],
+			"@merchant-shop/*": ["src/app/modules/merchant/pages/shop/*"],
+
+			"@ecommerce-booking/*": ["src/app/modules/ecommerce/pages/booking/*"],
+			"@ecommerce-article/*": ["src/app/modules/ecommerce/pages/article/*"],
+			"@ecommerce-order-detail/*": ["src/app/modules/ecommerce/pages/order-detail/*"],
+			"@ecommerce-payment/*": ["src/app/modules/ecommerce/pages/payment/*"]
+		},
+		"baseUrl": "./",
+		"outDir": "./dist/out-tsc",
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"declaration": false,
+		"experimentalDecorators": true,
+		"moduleResolution": "node",
+		"importHelpers": true,
+		"target": "ES2022",
+		"module": "ES2022",
+		"useDefineForClassFields": false,
+		"lib": ["ES2022", "dom", "esnext.asynciterable"],
+		"allowSyntheticDefaultImports": true,
+		"downlevelIteration": true
+	},
+	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false,
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"strictTemplates": true
+	}
+}

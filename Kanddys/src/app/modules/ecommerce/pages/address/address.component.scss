@@ -1,0 +1,138 @@
+h1 {
+	font-size: 16px;
+	color: #fff;
+}
+
+// TODO HEADER
+
+header {
+	background: var(--gradient);
+	padding: 8px;
+	display: flex;
+	align-items: center;
+}
+
+// TODO MAIN
+
+main {
+	padding: 12px;
+}
+
+// TODO MAIN OPTIONS
+
+#OPTIONS section {
+	& h2 {
+		font-size: 19px;
+		text-align: center;
+		margin: 12px 0;
+	}
+
+	& button {
+		margin-top: 16px;
+		width: 100%;
+		padding: 12px;
+		border-radius: 24px;
+		border: 2px solid #7b7b7b;
+		background-color: transparent;
+		font-size: 15px;
+		font-weight: 600;
+	}
+}
+
+// TODO MAIN FORM
+
+#FORM form {
+	& section {
+		padding: 8px;
+		background-color: #ffffff;
+		border-radius: 12px;
+		margin-bottom: 16px;
+	}
+
+	& section:last-child {
+		padding-top: 16px;
+		margin-bottom: 0;
+	}
+
+	& h2 {
+		margin: 8px 0 16px 0;
+		font-size: 19px;
+		font-weight: 800;
+	}
+
+	& h3 {
+		margin: 16px 0;
+		font-size: 15px;
+		font-weight: 600;
+	}
+
+	& h4 {
+		font-size: 15px;
+		font-weight: 400;
+		margin-bottom: 16px;
+	}
+
+	& p {
+		font-size: 14px;
+		font-style: italic;
+		margin-bottom: 16px;
+		color: #8b8b8b;
+	}
+
+	& mat-form-field {
+		width: 100%;
+		margin-bottom: 6px;
+	}
+
+	& mat-error {
+		margin-top: 2px;
+	}
+}
+
+.phone {
+	display: grid;
+	grid-template-columns: 3fr 7fr;
+	gap: 8px;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	margin-bottom: 8px;
+
+	& h4 {
+		margin: 0;
+	}
+}
+
+// TODO LIST
+
+#LIST button {
+	margin-top: 16px;
+	width: 100%;
+	padding: 12px;
+	border-radius: 24px;
+	border: 2px solid #7b7b7b;
+	background-color: transparent;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+// TODO FOOTER
+
+footer {
+	& button {
+		background: var(--gradient);
+		color: #9ca8a0;
+		width: 100%;
+		padding: 12px;
+		font-size: 15px;
+		font-weight: 400;
+
+		&.success {
+			font-weight: 600;
+			color: #ffffff;
+		}
+	}
+}

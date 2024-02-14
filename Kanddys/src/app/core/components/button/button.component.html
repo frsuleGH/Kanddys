@@ -1,0 +1,22 @@
+<button
+	aria-label="button"
+	type="button"
+	[class]="type"
+	[style.background]="background"
+	[class.status]="!status"
+	[class.disabled]="disabled"
+	[style.color]="color"
+	[class.light]="light"
+	[class.active]="active"
+>
+	@if ((type === 'XR' || type === 'ICON' || type === 'FAV') && icon) {
+		<mat-icon [style.color]="color">{{ icon }}</mat-icon>
+	}
+	{{ legend }}
+	@if (type === 'LI' && !disabled) {
+		<mat-icon [style.color]="color">{{ icon ? icon : 'arrow_forward_ios' }}</mat-icon>
+	}
+	@if (type === 'BLOCK' && active) {
+		<mat-icon [style.color]="color">done</mat-icon>
+	}
+</button>

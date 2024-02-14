@@ -1,0 +1,190 @@
+:host ::ng-deep .mat-expansion-panel-body {
+	padding: 0 !important;
+}
+
+h1 {
+	font-size: 18px;
+	max-width: 100%;
+}
+
+h2,
+p {
+	max-width: calc(100vw - 140px);
+}
+
+h2 {
+	font-size: 16px;
+}
+
+h3 {
+	font-size: 14px;
+	line-height: 1.2;
+}
+
+p {
+	color: #333333;
+	font-size: 14px;
+	-webkit-line-clamp: 2;
+}
+
+header,
+footer {
+	background: var(--gradient);
+}
+
+// TODO HEADER
+header {
+	padding: 8px;
+}
+
+// !TODO MAIN
+main {
+	background-color: #f5f5f5;
+	padding: 8px;
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: max-content max-content;
+	gap: 12px;
+}
+
+section {
+	padding: 12px;
+	border-radius: 12px;
+	background-color: #ffffff;
+}
+
+hr {
+	background-color: #c4c5c3;
+	border: none;
+	height: 1px;
+	margin: 12px 0;
+}
+
+// !TODO MAIN - PRODUCTS
+.product {
+	min-height: fit-content;
+	display: grid;
+	grid-template-columns: 100px 1fr;
+	align-items: center;
+	padding: 12px 0;
+	gap: 12px;
+
+	&__content {
+		display: grid;
+		grid-template-rows: 1fr max-content;
+		height: 100%;
+		gap: 8px;
+
+		& p {
+			color: #333333;
+			font-size: 14px;
+			-webkit-line-clamp: 4;
+		}
+	}
+
+	&__price {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 105%;
+	}
+
+	&__quantity {
+		transform: scale(0.8);
+		display: grid;
+		grid-template-columns: max-content minmax(25px, max-content) max-content;
+		align-items: center;
+		gap: 4px;
+		font-size: 16px;
+		border: 1px solid #333;
+		border-radius: 30px;
+		width: fit-content;
+		padding: 0 2px;
+
+		& span {
+			text-align: center;
+		}
+	}
+}
+
+// !TODO MAIN - QUEST
+a {
+	color: #189ac1;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14px;
+
+	& button {
+		border: none;
+		background-color: transparent;
+		background-color: #189ac1;
+		color: #ffffff;
+		padding: 4px 12px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-radius: 4px;
+	}
+}
+
+// !TODO MAIN - CONFIG
+
+.expansion-panel-body {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 12px 0 8px 0;
+
+	& button {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		border: 1px solid #333;
+		border-radius: 8px;
+		background-color: transparent;
+		padding: 8px 12px;
+		font-size: 14px;
+
+		&.complete {
+			background-color: #71aa81;
+			color: #fff;
+			border-color: #71aa81;
+
+			& p {
+				color: #fff;
+			}
+		}
+	}
+
+	& p {
+		text-transform: uppercase;
+		font-weight: 600;
+		line-height: 1;
+	}
+}
+
+// TODO FOOTER
+
+footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	& p,
+	& button {
+		padding: 12px;
+		color: #fff;
+		font-size: 17px;
+	}
+
+	& button {
+		color: rgba(255, 255, 255, 0.3);
+
+		&.active {
+			color: #fff;
+		}
+	}
+}

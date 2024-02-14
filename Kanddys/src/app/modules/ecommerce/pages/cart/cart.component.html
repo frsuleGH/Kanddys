@@ -1,0 +1,100 @@
+<div class="viewport structure">
+	<header>
+		<app-button [type]="'ICON'" icon="arrow_back_ios" background="transparent" color="#fff" (click)="back()" />
+	</header>
+
+	<main class="overflow-y">
+		<section>
+			@defer (when status() === 'LOADED') {
+				@defer (when cart().products.length === 0) {
+					@if (cart().products.length === 0 && status() === 'LOADED') {
+						<h1>No hay productos en el carrito</h1>
+					}
+				}
+
+				@if (cart().products.length >= 0) {
+					@for (product of cart().products; track $index) {
+						<article class="product">
+							<img [src]="product.image" [alt]="product.title" (click)="redirect('product', product.id)" />
+
+							<div class="product__content">
+								<div class="product__info">
+									<h2 class="text-over">{{ product.title }}</h2>
+									<p>{{ product.description }}</p>
+								</div>
+
+								<div class="product__price">
+									<h3 class="text-over">{{ currency(product.price) }}</h3>
+									<div class="product__quantity">
+										<app-button
+											[type]="'ICON'"
+											[icon]="product.quantity >= 2 ? 'chevron_left' : 'delete'"
+											background="transparent"
+											color="#000"
+											(click)="set(product, 'DECREMENT')"
+										/>
+										<span>{{ product.quantity }}</span>
+										<app-button
+											[type]="'ICON'"
+											icon="chevron_right"
+											color="#000"
+											background="transparent"
+											(click)="set(product, 'INCREMENT')"
+										/>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						@if (cart().products.length - 1 !== $index) {
+							<hr />
+						}
+					}
+				}
+			} @placeholder {
+				<h1>Cargando...</h1>
+			}
+		</section>
+
+		@defer (
+			when status() === 'LOADED' && (conf().delivery || conf().pickup || conf().traditional || conf().virtual) && cart().products.length > 0
+		) {
+			@if (
+				status() === 'LOADED' &&
+				(conf().delivery || conf().pickup || conf().traditional || conf().virtual) &&
+				cart().products.length > 0
+			) {
+				<section>
+					<mat-accordion class="expansion-panel-pd">
+						<mat-expansion-panel style="box-shadow: none" [expanded]="true">
+							<mat-expansion-panel-header style="padding: 0 12px 0 0; height: 48px">
+								<mat-panel-title><h2>Opcionales</h2></mat-panel-title>
+							</mat-expansion-panel-header>
+							<div class="expansion-panel-body">
+								<button (click)="redirect('traditional')" [class.complete]="traditional">
+									<p>Mensaje de dedicatoria</p>
+									<mat-icon>{{ traditional ? 'done' : 'add' }}</mat-icon>
+								</button>
+							</div>
+						</mat-expansion-panel>
+					</mat-accordion>
+				</section>
+			}
+		}
+	</main>
+
+	<footer>
+		@if (status() === 'LOADED') {
+			@if (cart().total > 0) {
+				<p>Total: {{ currency(cart().total) }}</p>
+			} @else {
+				<p>Total: 0</p>
+			}
+		} @else {
+			<p>Cargando...</p>
+		}
+		@if (status() === 'LOADED' && cart().valid && cart().products.length > 0) {
+			<button [class.active]="cart().valid" (click)="continue()">CONTINUAR</button>
+		}
+	</footer>
+</div>

@@ -1,0 +1,11 @@
+div {
+	background-color: rgba(24, 29, 23, 1);
+	display: grid;
+	grid-template-columns: 1fr max-content;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+	width: 100%;
+	color: #c4c5c3;
+	font-size: 16px;
+}

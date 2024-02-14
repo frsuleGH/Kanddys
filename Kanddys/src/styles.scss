@@ -1,0 +1,189 @@
+:root {
+	--vh: 0px;
+	--gradient: linear-gradient(81.89deg, #9747ff -21.71%, #365fab 125.42%);
+	// --mdc-dialog-container-color: transparent;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Inter', sans-serif;
+	list-style: none;
+	text-decoration: none;
+	scrollbar-width: none;
+	scrollbar-color: #ffffff #ffffff;
+
+	&::-webkit-scrollbar {
+		width: 0px;
+		height: 0px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #ffffff;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #ffffff;
+		border-radius: 0px;
+		border: 0px none #ffffff;
+	}
+}
+
+html {
+	display: grid;
+	place-items: center;
+}
+
+body {
+	max-width: 430px !important;
+	max-height: 932px !important;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+main {
+	min-height: 100%;
+	background-color: #f6f6f6;
+}
+
+button {
+	background-color: transparent;
+	border: none;
+}
+
+// -------------------- VIEWPORT -------------------- //
+
+.viewport {
+	height: var(--vh);
+	max-height: 932px !important;
+}
+
+.overflow-y {
+	overflow-y: scroll;
+}
+
+.structure {
+	display: grid;
+	grid-template-rows: max-content 1fr max-content;
+}
+
+// -------------------- APP-BUTTON-ICON -------------------- //
+
+.icon {
+	display: flex;
+	width: fit-content;
+	height: fit-content;
+}
+
+.icon-circle {
+	border: 2px solid #fff;
+	border-radius: 50%;
+}
+
+// -------------------- TEXT OVERFLOW -------------------- //
+
+.text-over {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	word-break: break-word;
+	-webkit-line-clamp: 1;
+	height: fit-content;
+}
+
+// -------------------- IMAGE -------------------- //
+img {
+	background-color: #fff;
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	aspect-ratio: 9 / 16;
+	object-fit: contain;
+}
+
+.logo {
+	width: 48px;
+	height: 48px;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+}
+
+// -------------------- MAT-CALENDAR -------------------- //
+
+html {
+	--mat-datepicker-calendar-date-selected-state-background-color: #ffffff;
+	--mat-datepicker-calendar-date-selected-state-text-color: #000000;
+	--mat-datepicker-calendar-date-text-color: #ffffff;
+	--mat-datepicker-calendar-date-disabled-state-text-color: #525652;
+	--mat-datepicker-calendar-date-today-outline-color: #ffffff;
+	--mat-datepicker-calendar-body-label-text-color: #ffffff;
+	--mat-datepicker-calendar-header-text-color: #ffffff;
+	--mat-datepicker-calendar-header-divider-color: #ffffff;
+	--mat-datepicker-calendar-period-button-icon-color: #ffffff;
+	--mat-datepicker-calendar-header-text-weight: 800;
+	--mat-datepicker-calendar-header-text-size: 15px;
+	--mat-datepicker-calendar-body-label-text-color: #181d17;
+
+	// ? MatFormField - MatInput:
+	// background-color:
+	--mdc-filled-text-field-container-color: rgba(62, 62, 62, 1);
+	// Outline color:
+	--mdc-filled-text-field-caret-color: #fff;
+	--mdc-filled-text-field-focus-active-indicator-color: #fff;
+	// Outline height:
+	--mdc-filled-text-field-focus-active-indicator-height: 0;
+	// Placeholder color:
+	--mdc-filled-text-field-input-text-placeholder-color: #fff;
+	// Text color:
+	--mdc-filled-text-field-input-text-color: #fff;
+}
+
+// .mat-mdc-button {
+// 	--mdc-text-button-label-text-color: #ffffff;
+// 	--mdc-text-button-label-text-color: #ffffff;
+// }
+
+// .mat-mdc-icon-button {
+// 	--mdc-icon-button-icon-color: #ffffff;
+// }
+
+// mat-calendar {
+// 	background-color: #181d17;
+// }
+
+// .mat-calendar-body-label {
+// 	padding: 0 !important;
+// }
+
+// .mat-calendar-body-cell-content {
+// 	border-radius: 16px !important;
+// 	font-weight: 800;
+// }
+
+// .mat-calendar-disable {
+// 	background: orange;
+// 	border-radius: 100%;
+// }
+
+// .expansion-panel-pd .mat-expansion-panel-content .mat-expansion-panel-body {
+// 	padding: 0 !important;
+// }
+
+// #test div .mat-expansion-panel-body {
+// 	padding: 0px !important;
+// }
+
+.d-none {
+	display: none !important;
+}
+
+.loader-hidden {
+	opacity: 0 !important;
+}

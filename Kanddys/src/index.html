@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <title>LAIA</title>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="LAIA es una plataforma con IA integrada.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#1976d2">
+
+    <link rel="preconnect" href="https://storage-rewardcharly.sfo2.digitaloceanspaces.com">
+  </head>
+
+  <body>
+    <div id="loader">
+      <div id="spinner">
+        <div id="bounce-one"></div>
+        <div id="bounce-two"></div>
+        <div></div>
+      </div>
+    </div>
+    <style>
+      #loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 999999;
+        background: linear-gradient(81.89deg, #f5f5f5, #dcdcdc);
+        color: #333;
+        pointer-events: none;
+        opacity: 1;
+        animation: opacity 500ms ease-out 0ms 1 normal none;
+      }
+      #spinner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 40px;
+        width: 56px;
+      }
+    
+      #spinner > div {
+        width: 12px;
+        height: 12px;
+        background-color: #34d0ff;
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: 1s ease-in-out infinite both bouncedelay;
+        animation: 1s ease-in-out infinite both bouncedelay;
+      }
+    
+      #bounce-one {
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+      }
+    
+      #bounce-two {
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+      }
+    
+      @keyframes focus-in-contract {
+        0% {
+          opacity: 1;
+        }
+    
+        100% {
+          opacity: 0;
+        }
+      }
+    
+      @-webkit-keyframes bouncedelay {
+        0%,
+        100%,
+        80% {
+          -webkit-transform: scale(0);
+        }
+    
+        40% {
+          -webkit-transform: scale(1);
+        }
+      }
+    
+      @keyframes bouncedelay {
+        0%,
+        100%,
+        80% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+    
+        40% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+      }
+    </style>
+    <app-root></app-root>
+    <noscript> Please enable JavaScript to continue using this application. </noscript>
+  </body>
+</html>

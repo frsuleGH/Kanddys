@@ -1,0 +1,50 @@
+h1 {
+	font-size: 17px;
+	font-weight: 600;
+}
+
+header,
+footer {
+	background: var(--gradient);
+}
+
+// TODO HEADER
+
+header {
+	display: flex;
+	color: #fff;
+	align-items: center;
+	padding: 8px;
+}
+
+// TODO MAIN
+
+main {
+	padding: 12px;
+	background-color: #f6f6f6;
+	min-height: 100%;
+}
+
+mat-form-field {
+	width: 100%;
+}
+
+// TODO FOOTER
+
+footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+
+	& button {
+		padding: 12px;
+		color: rgba(255, 255, 255, 0.3);
+		font-size: 17px;
+		font-weight: 600;
+
+		&.valid {
+			color: #fff;
+		}
+	}
+}

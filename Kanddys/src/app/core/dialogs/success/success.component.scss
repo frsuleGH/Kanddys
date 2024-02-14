@@ -1,0 +1,44 @@
+section {
+	background-color: rgba(24, 29, 23, 1);
+	padding: 12px;
+	display: grid;
+	gap: 12px;
+}
+
+h1 {
+	color: #9747ff;
+	align-items: center;
+}
+
+h2 {
+	background: linear-gradient(to right, #6fcf97, #59a86a, #6f9bcf);
+	font-size: 40px;
+	font-weight: 550;
+	margin-bottom: 0;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+p {
+	color: #7b7b7b;
+	margin-top: 0;
+	text-align: center;
+}
+
+button {
+	color: #fff;
+	background-color: transparent;
+	border: none;
+	font-size: 16px;
+	padding-bottom: 12px;
+}
+
+mat-icon {
+	display: flex;
+	width: 100%;
+	justify-content: end;
+}
+
+mat-form-field {
+	width: 100%;
+}

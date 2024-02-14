@@ -1,0 +1,55 @@
+<div class="viewport structure">
+	<header>
+		<button>
+			@if (shop().merchant.logo !== '') {
+				<img
+					class="logo"
+					[src]="shop().merchant.logo"
+					[alt]="shop().merchant.title ? shop().merchant.title : 'Imagen sin texto alternativo'"
+				/>
+			} @else {
+				<div style="min-width: 48px; min-height: 48px; border-radius: 100%; background-color: #c3c3c4"></div>
+			}
+
+			<div>
+				<h1 class="text-over">{{ shop().merchant.title }}</h1>
+				<h2 class="text-over">{{ shop().merchant.description }}</h2>
+			</div>
+		</button>
+
+		<app-button [type]="'FAV'" icon="share" background="transparent" (click)="open(shop().merchant)" />
+	</header>
+
+	<main class="overflow-y">
+		<section>
+			@for (product of shop().products; track $index) {
+				<button type="button" (click)="redirect('product', product.id)">
+					@if (product.images[0] !== '') {
+						<img [src]="product.images[0]" [alt]="product.title ? product.title : 'Imagen sin texto alternativo'" />
+					} @else {
+						<div
+							style="background-color: #c3c4c4; border-radius: 12px"
+							[style.width]="width + 'px'"
+							[style.height]="height + 'px'"
+						></div>
+					}
+					<div>
+						<h4 class="text-over">{{ product.title }}</h4>
+						<p>{{ currency(product.price) }}</p>
+					</div>
+				</button>
+			}
+		</section>
+	</main>
+
+	@if (count() !== 0) {
+		<footer>
+			<app-button
+				[type]="'ICON'"
+				[icon]="count() !== 0 ? 'shopping_cart_checkout' : 'shopping_cart'"
+				background="transparent"
+				(click)="redirect('cart')"
+			/>
+		</footer>
+	}
+</div>

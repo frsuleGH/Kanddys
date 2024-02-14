@@ -1,0 +1,187 @@
+<div class="viewport structure" style="background-color: #f6f6f6">
+	<header>
+		<app-button [type]="'ICON'" icon="arrow_back_ios" background="transparent" (click)="back()" />
+		<h1>
+			@switch (mode) {
+				@case ('FORM') {
+					Nueva dirección
+				}
+				@case ('LIST') {
+					Direcciones guardadas
+				}
+				@default {
+					Entregas
+				}
+			}
+		</h1>
+	</header>
+
+	<main class="overflow-y" [id]="mode">
+		@if (mode === 'OPTIONS') {
+			<section>
+				<h2>¿Cómo prefieres recibir tu pedido?</h2>
+				<button (click)="continue()">Pasaré a buscarlo (C. José Amado Soler)</button>
+				<button (click)="next('FORM')">Ingresa una nueva dirección</button>
+				@if (user && address && address.length) {
+					<button (click)="next('LIST')">Elegir entre tus direcciones guardadas</button>
+				}
+			</section>
+		}
+
+		@defer (when mode === 'FORM') {
+			@if (mode === 'FORM') {
+				<form [formGroup]="form">
+					<section>
+						<h2>¿Cuál es la dirección de entrega?</h2>
+
+						<h3>Por favor, completa los campos que consideres necesarios.</h3>
+
+						<h4>País</h4>
+						<mat-form-field appearance="outline">
+							<input
+								matInput
+								formControlName="country"
+								placeholder="República Dominicana"
+								minlength="2"
+								maxlength="57"
+							/>
+							@if (form.get('country')?.invalid && form.get('country')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('country')!) }}</mat-error>
+							}
+						</mat-form-field>
+
+						<h4>Ciudad</h4>
+						<mat-form-field appearance="outline">
+							<input matInput formControlName="city" placeholder="Santo Domingo" minlength="1" maxlength="101" />
+							@if (form.get('city')?.invalid && form.get('city')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('city')!) }}</mat-error>
+							}
+						</mat-form-field>
+
+						<h4>Calle</h4>
+						<mat-form-field appearance="outline">
+							<input matInput formControlName="street" placeholder="Calle" minlength="1" maxlength="101" />
+							@if (form.get('street')?.invalid && form.get('street')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('street')!) }}</mat-error>
+							}
+						</mat-form-field>
+						<p>
+							Ingresa el nombre completo de la calle, incluyendo cualquier prefijo o sufijo, como "Avenida", "Calle" o
+							"Carrera".
+						</p>
+
+						<h4>Número de casa/departamento</h4>
+						<mat-form-field appearance="outline">
+							<input matInput formControlName="number" placeholder="Número" minlength="1" maxlength="31" />
+							@if (form.get('number')?.invalid && form.get('number')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('number')!) }}</mat-error>
+							}
+						</mat-form-field>
+						<p>
+							Coloca el número especifico de la casa o departamento. Si es un departamento, puedes incluir la letra
+							correspondiente.
+						</p>
+
+						<h4>Punto de referencia</h4>
+						<mat-form-field appearance="outline">
+							<input
+								matInput
+								formControlName="reference"
+								placeholder="Punto de referencia"
+								minlength="3"
+								maxlength="100"
+							/>
+							@if (form.get('reference')?.invalid && form.get('reference')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('reference')!) }}</mat-error>
+							}
+						</mat-form-field>
+						<p>
+							Proporciona un punto de referencia que sea fácilmente identificable, como "Frente a la tienda XYZ" o "Al
+							lado del parque ABC".
+						</p>
+
+						<h4>Notas</h4>
+						<mat-form-field appearance="outline">
+							<input matInput formControlName="note" placeholder="Notas de entrega" minlength="3" maxlength="501" />
+							@if (form.get('note')?.invalid && form.get('note')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('note')!) }}</mat-error>
+							}
+						</mat-form-field>
+						<p>
+							Utiliza este espacio para agregar información adicional relevante, como "La entrada está en la parte
+							trasera del edificio" o "Indicar si no hay respuesta, llamar al teléfono de contacto".
+						</p>
+					</section>
+
+					<section>
+						<h2>¿Quien recibirá la entrega?</h2>
+
+						<h4>¿Quien lo recibe?</h4>
+						<mat-form-field appearance="outline">
+							<input matInput formControlName="addressee" placeholder="Nombre" minlength="1" maxlength="51" />
+							@if (form.get('addressee')?.invalid && form.get('addressee')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('addressee')!) }}</mat-error>
+							}
+						</mat-form-field>
+						<p>Ej: El/la encargado/a del edificio. El/la cumpleañeras.</p>
+
+						<h4>Teléfono de quien recibe</h4>
+						<mat-form-field appearance="outline">
+							<input matInput formControlName="phone" placeholder="000-0000" minlength="6" maxlength="16" />
+							@if (form.get('phone')?.invalid && form.get('phone')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('phone')!) }}</mat-error>
+							}
+						</mat-form-field>
+						<p>Ingresa el número de teléfono de la persona que recibirá el envío para facilitar la comunicación.</p>
+
+						<h4>¿Quien envia?</h4>
+						<mat-form-field appearance="outline">
+							<input matInput formControlName="sender" placeholder="Anónimo" maxlength="51" />
+							@if (form.get('sender')?.invalid && form.get('sender')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('sender')!) }}</mat-error>
+							}
+						</mat-form-field>
+						<p>Dejar vacio si es anónimo.</p>
+					</section>
+
+					<section>
+						<h4>Nombre de esta dirección</h4>
+						<mat-form-field appearance="outline">
+							<input matInput formControlName="save" placeholder="Nombre" maxlength="31" />
+							@if (form.get('save')?.invalid && form.get('save')?.touched) {
+								<mat-error>{{ getErrorMessage(form.get('save')!) }}</mat-error>
+							}
+						</mat-form-field>
+						<p>
+							Proporciona un nombre descriptivo para esta dirección, lo que facilitará guardarla para futuros usos, como
+							"Casa" o "Oficina".
+						</p>
+
+						<div class="flex">
+							<mat-icon [style.color]="form.get('save')?.value ? '#71aa81' : '#8b8b8b'">
+								{{ form.get('save')?.value ? 'check_circle' : 'highlight_off' }}
+							</mat-icon>
+							<h4>Guarda tu dirección para futuros pedidos.</h4>
+						</div>
+					</section>
+				</form>
+			}
+		}
+
+		@defer (when mode === 'LIST') {
+			@if (mode === 'LIST') {
+				@if (address) {
+					@for (item of address; track $index) {
+						<button (click)="continue(item)">{{ item.address.save }}</button>
+					}
+				}
+			}
+		}
+	</main>
+
+	<footer>
+		@if (mode === 'FORM') {
+			<button (click)="complete()" [class.success]="form.valid">Continuar</button>
+		}
+	</footer>
+</div>

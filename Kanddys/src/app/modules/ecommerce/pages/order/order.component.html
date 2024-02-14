@@ -1,0 +1,105 @@
+<div class="viewport structure">
+	<!-- TODO HEADER -->
+	<header>
+		<app-button [type]="'ICON'" background="transparent" icon="arrow_back_ios" (click)="back()" />
+		<h1>Pre-factura</h1>
+	</header>
+
+	<!-- TODO MAIN -->
+	<main class="overflow-y">
+		<!-- TODO SUMARY -->
+		<section id="SUMARY">
+			<div>
+				<p>Productos</p>
+				<p>{{ currency(cart?.total) }}</p>
+			</div>
+			<hr />
+			<div>
+				<p><strong>Total</strong></p>
+				<p>
+					<strong>{{ currency(cart?.total) }}</strong>
+				</p>
+			</div>
+		</section>
+
+		<!-- TODO ARTICLES -->
+		<section id="ARTICLES">
+			<h2>ARTÍCULOS</h2>
+			@for (product of cart?.products; track $index) {
+				<article (click)="redirect('product', product.id)">
+					<img [src]="product.image" [alt]="product.title" />
+					<div>
+						<h3 class="text-over">{{ product.title }}</h3>
+						<p class="text-over">{{ product.description }}</p>
+						<div class="flex">
+							<p style="font-size: 15px">Cantidad: {{ product.quantity }}</p>
+							<p style="font-weight: 600">{{ currency(product.price) }}</p>
+						</div>
+					</div>
+				</article>
+			}
+		</section>
+
+		<!-- TODO OPTIONS -->
+		@if (cart?.traditional) {
+			<section id="OPTIONS">
+				<h2>OPCIONALES</h2>
+				<article>
+					@if (cart?.traditional) {
+						<p>Dedicatoria</p>
+						<p class="text-over">{{ cart?.traditional }}</p>
+					}
+				</article>
+				<i>Mensaje de información sobre los opcionales</i>
+			</section>
+		}
+
+		<!-- TODO DELIVERY -->
+		@if (address) {
+			<section id="DELIVERY">
+				<h2>ENVIO</h2>
+				<article>
+					@if (address.country || address.city || address.street || address.number) {
+						<p>Dirección</p>
+						<p class="text-over" style="padding-left: 8px">
+							{{ address.street }}, {{ address.city }}, {{ address.number }}, {{ address.country }}
+						</p>
+					}
+					@if (address.phone) {
+						<p>Teléfono</p>
+						<p class="text-over">{{ address.phone }}</p>
+					}
+					@if (address.addressee) {
+						<p>Lo recibe</p>
+						<p class="text-over">{{ address.addressee }}</p>
+					}
+					@if (calendar) {
+						<p>Reserva</p>
+						<p>{{ calendar }}</p>
+					}
+					@if (address.reference) {
+						<p class="text-over" style="grid-column: 1 / span 2; border: none">{{ address.reference }}</p>
+					}
+				</article>
+			</section>
+
+			<i>¡Revisa que la información sea correcta ya que es donde entregaremos tu pedido!</i>
+		} @else {
+			<section id="DELIVERY">
+				<h2>RETIRAR</h2>
+				<article>
+					<p>Dirección</p>
+					<p class="text-over">C. José Amado Soler #39</p>
+					@if (calendar) {
+						<p>Reserva</p>
+						<p>{{ calendar }}</p>
+					}
+				</article>
+			</section>
+		}
+	</main>
+
+	<footer>
+		<button type="text" (click)="confirm()">Pagar</button>
+	</footer>
+</div>

@@ -1,0 +1,45 @@
+<div class="viewport structure" background-color: #181d17;>
+	<header>
+		<app-button [type]="'ICON'" icon="arrow_back_ios" background="transparent" (click)="back()" />
+	</header>
+
+	<main class="overflow-y" [id]="mode">
+		@if (mode === 'BANK') {
+			<section class="bank__title">
+				<p>Articulos facturados:</p>
+				<p>{{ count }}</p>
+				<p>Monto total:</p>
+				<p>{{ currency(total) }}</p>
+			</section>
+			<hr />
+			<section class="bank__payment">
+				<h2>Método de pago:</h2>
+				<h3>Transferencia Bancaria</h3>
+			</section>
+			<h4>
+				Por favor, haga la transferencia al Banco Popular Dominicano y suba aquí una foto de la pantalla. <br /><br />
+				Cuenta No. 790469142
+			</h4>
+
+			<div id="UPLOAD">
+				<button type="button" aria-label="Subir imagen" (click)="onClickInput()">
+					<mat-icon>file_upload</mat-icon>
+				</button>
+			</div>
+
+			<input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="image/png, image/jpeg" />
+		}
+		@if (mode === 'PROOF') {
+			<section>
+				<img [src]="image" alt="Comprobante" />
+				<button (click)="reset()">Eliminar el comprobante</button>
+			</section>
+		}
+	</main>
+
+	<footer>
+		@if (mode === 'PROOF') {
+			<button type="button" (click)="continue()">Confirmar el pago y facturar</button>
+		}
+	</footer>
+</div>

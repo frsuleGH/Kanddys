@@ -1,0 +1,26 @@
+@if (mode === 'INITIAL') {
+	<div>
+		<p>Compartir enlace</p>
+		<app-button [type]="'FAV'" icon="share" (click)="share()" />
+
+		<p>Copiar enlace</p>
+		<app-button [type]="'FAV'" icon="link" (click)="mode = 'COPY'; copy()" />
+
+		<p>Código QR</p>
+		<app-button [type]="'FAV'" icon="qr_code" (click)="qr()" />
+
+		<!-- @if (true) {
+			@defer {
+				<a>Iniciar sesión</a>
+				<app-button [type]="'FAV'" icon="login" />
+			}
+		} -->
+	</div>
+} @else if (mode === 'COPY') {
+	@defer {
+		<div>
+			<p>Enlace copiado en el portapapeles</p>
+			<app-button [type]="'FAV'" icon="close" (click)="close()" />
+		</div>
+	}
+}

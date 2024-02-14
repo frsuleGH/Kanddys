@@ -1,0 +1,141 @@
+<div class="viewport structure">
+	<!-- TODO HEADER -->
+	<header>
+		<app-button [type]="'ICON'" background="transparent" icon="arrow_back_ios" (click)="redirect('shop')" />
+		<h1>Factura: {{ id }}</h1>
+	</header>
+
+	@if (invoice) {
+		<!-- TODO MAIN -->
+		<main class="overflow-y">
+			<!-- TODO STATUS -->
+			<button class="btn__dialog" (click)="open()">
+				<span></span>
+				<div>
+					<em>Estado</em>
+					<p>Centro de Distribución local</p>
+				</div>
+				<!-- <app-button [type]="'ICON'" background="transparent" color="#000" icon="arrow_forward_ios" /> -->
+			</button>
+
+			<!-- TODO SUMARY -->
+			<section id="SUMARY">
+				<div>
+					<p>Productos ({{ invoice.products.length }})</p>
+					<p>{{ currency(invoice.total) }}</p>
+				</div>
+				<hr />
+				<div>
+					<p><strong>Total</strong></p>
+					<p>
+						<strong>{{ currency(invoice.total) }}</strong>
+					</p>
+				</div>
+			</section>
+
+			<!-- TODO ARTICLES -->
+			<section id="ARTICLES">
+				<h2>ARTÍCULOS</h2>
+				@for (product of invoice.products; track $index) {
+					<article (click)="redirect('product', product.id)">
+						<img [src]="product.image" [alt]="product.title" />
+						<div>
+							<h3 class="text-over">{{ product.title }}</h3>
+							<p class="text-over">{{ product.description }}</p>
+							<div class="flex">
+								<p>Cantidad: {{ product.quantity }}</p>
+								<p>{{ currency(product.price) }}</p>
+							</div>
+						</div>
+					</article>
+					@if ($index < invoice.products.length - 1) {
+						<hr />
+					}
+				}
+			</section>
+
+			<!-- TODO CHECK -->
+			<section id="CHECK">
+				<h2>COMPROBANTE</h2>
+				<a [href]="invoice.image" target="_blank">
+					<img [src]="invoice.image" [alt]="invoice.id" />
+					<div>
+						<div>
+							<div class="flex">
+								<h3>{{ currency(invoice.total) }}</h3>
+								<strong [style.color]="invoice.check ? 'green' : 'red'">{{
+									invoice.check ? 'APROBADO' : 'PENDIENTE'
+								}}</strong>
+							</div>
+							<h4>Pagado con transferencia bancaria</h4>
+						</div>
+						<div class="flex">
+							<p>{{ invoice.createAt }}</p>
+							<mat-icon>image</mat-icon>
+						</div>
+					</div>
+				</a>
+			</section>
+
+			<!-- TODO OPTIONS -->
+			<section id="OPTIONS">
+				<h2>DETALLES</h2>
+				<article>
+					@if (invoice.traditional) {
+						<p>Dedicatoria</p>
+						<p class="text-over">{{ invoice.traditional }}</p>
+					}
+					@if (invoice.reservation) {
+						<p>Reserva</p>
+						<p>{{ _formmater(invoice.reservation) }}</p>
+					}
+					@if (invoice.pickup) {
+						<p>Retirar en:</p>
+						<p class="text-over">C. José Amado Soler</p>
+					} @else {
+						<p>Envio:</p>
+						@if (invoice.direction) {
+							<p class="text-over">{{ invoice.direction }}</p>
+						} @else {
+							<p>Sin dirección.</p>
+						}
+						<p>Teléfono</p>
+						@if (invoice.phone && invoice.phone !== 0) {
+							<p class="text-over">{{ invoice.phone }}</p>
+						} @else {
+							<p>Sin teléfono.</p>
+						}
+						<p>Lo recibe</p>
+						@if (invoice.addressee) {
+							<p class="text-over">{{ invoice.addressee }}</p>
+						} @else {
+							<p>Sin destinatario.</p>
+						}
+						@if (invoice.reference) {
+							<p class="text-over" style="grid-column: 1 / span 2; border: none">{{ invoice.reference }}</p>
+						} @else {
+							<p>Sin referencia.</p>
+						}
+					}
+				</article>
+				<!-- <i>Mensaje de información sobre los opcionales puede referirse a las reservas o a dedicatorias.</i> -->
+			</section>
+
+			<!-- TODO DELIVERY -->
+			<!-- <section id="DELIVERY">
+					<h2>ENVIO</h2>
+					<article>
+					</article>
+				</section>
+			} -->
+
+			<!-- <i>¡Revisa que la información sea correcta ya que es donde entregaremos tu pedido!</i> -->
+		</main>
+
+		<footer>
+			@if (invoice) {
+				<button type="text" (click)="share(invoice)">Compartir</button>
+			}
+		</footer>
+	}
+</div>

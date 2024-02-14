@@ -1,0 +1,50 @@
+<div class="viewport structure">
+	<header [id]="mode">
+		<div style="width: 100%">
+			<app-button [type]="'ICON'" icon="arrow_back_ios" background="transparent" (click)="back()" />
+		</div>
+
+		@if (mode === 'PRODUCT') {
+			<button type="button">
+				<div>
+					<h1 class="text-over">{{ product().title }}</h1>
+					<h2 class="text-over">{{ product().description }}</h2>
+				</div>
+			</button>
+
+			<app-button [type]="'FAV'" icon="more_vert" background="transparent" (click)="open()" />
+		}
+	</header>
+
+	<main class="overflow-y">
+		@if (mode === 'PRODUCT') {
+			<section #carousel class="carousel">
+				@for (image of product().images; track $index) {
+					<div>
+						<img [src]="image" />
+					</div>
+				}
+			</section>
+
+			@if (product().images.length > 1) {
+				<section class="indicators flex">
+					@for (dot of product().images; track $index) {
+						<app-button
+							[type]="'ICON'"
+							[icon]="$index === index ? 'radio_button_checked' : 'radio_button_unchecked'"
+							background="transparent"
+							color="#fff"
+							(click)="scrollToImage($index)"
+						/>
+					}
+				</section>
+			}
+		}
+	</main>
+
+	<footer>
+		<!-- <p>{{ status() === 'LOADED' ? currency(product().price) : 'Cargando...' }}</p> -->
+		<p>{{ currency(product().price) }}</p>
+		<button (click)="add(product())">Agregar al carrito</button>
+	</footer>
+</div>

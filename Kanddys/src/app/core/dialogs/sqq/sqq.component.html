@@ -1,0 +1,77 @@
+<section>
+	<form [formGroup]="form">
+		@switch (user().mode) {
+			@case ('LOGIN') {
+				<h2>Correo electrónico</h2>
+				<mat-form-field>
+					<input #mail matInput formControlName="mail" type="email" placeholder="Ingresa tu correo electrónico" />
+					@if (form.get('mail')?.invalid && form.get('mail')?.touched) {
+						<mat-error>Correo electrónico no válido</mat-error>
+					}
+				</mat-form-field>
+				@if (form.get('mail')?.valid) {
+					<app-button [type]="'XL'" legend="Continuar" (click)="check()" />
+				}
+				<app-button [type]="'XL'" legend="Cancelar" background="transparent" (click)="close()" />
+			}
+			@case ('HELLO') {
+				<h2>¡Hola!</h2>
+				<app-button [type]="'XL'" legend="Cerrar" (click)="close()" />
+			}
+			@case ('OPTIONS') {
+				<h2>Bienvenido de vuelta, ¿Cómo prefieres accesar a tu LAIA?</h2>
+				<app-button [type]="'LI'" legend="Con mi contraseña" (click)="set('PASSWORD')" />
+				<app-button [type]="'LI'" legend="Desde mi correo" (click)="set('EMAIL')" />
+				<app-button [type]="'XL'" legend="Volver" background="transparent" (click)="set('LOGIN')" />
+			}
+			@case ('PASSWORD') {
+				<h2>Contraseña</h2>
+				<mat-form-field>
+					<input
+						#password
+						matInput
+						formControlName="password"
+						[type]="hide ? 'password' : 'text'"
+						placeholder="Ingrese su contraseña"
+					/>
+					<button
+						mat-icon-button
+						matSuffix
+						(click)="hide = !hide"
+						[attr.aria-label]="'Hide password'"
+						[attr.aria-pressed]="hide"
+					>
+						<mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+					</button>
+					@if (true) {
+						<mat-error>Contraseña incorrecta, inténtalo nuevamente</mat-error>
+					}
+				</mat-form-field>
+				<button type="button" aria-label="Recuperar contraseña" (click)="set('EMAIL')">
+					Prefiero recibir el correo con el enlace de acceso.
+				</button>
+				@if (password.value.length > 1) {
+					<app-button [type]="'XL'" legend="Ingresar" (click)="login()" />
+					<app-button [type]="'XL'" legend="Volver" background="transparent" (click)="set('OPTIONS')" />
+				}
+			}
+			@case ('SUCCESS') {
+				<h2>Correo enviado exitosamente, por favor revisa tu bandeja de entrada y casilla de spam</h2>
+				<app-button [type]="'XL'" legend="Volver" background="transparent" (click)="set('OPTIONS')" />
+			}
+			@case ('ERROR') {
+				<h2>Ha ocurrido un fallo al enviar el correo</h2>
+				<app-button [type]="'XL'" legend="Reintentar" background="transparent" (click)="set('ERROR')" />
+				<app-button [type]="'XL'" legend="Volver" background="transparent" (click)="set('OPTIONS')" />
+			}
+			@case ('WELCOME') {
+				<h1 style="text-align: center; width: 100%">¡Hola!</h1>
+				<p style="text-align: center; width: 100%">Recibirás un correo con el acceso para tus futuras entradas.</p>
+				<app-button [type]="'XL'" legend="Seguir" (click)="close()" />
+			}
+			@default {
+				<p>Error</p>
+			}
+		}
+	</form>
+</section>

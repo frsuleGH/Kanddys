@@ -1,0 +1,37 @@
+<div class="viewport structure">
+	<header>
+		<app-button [type]="'ICON'" icon="arrow_back_ios" background="transparent" (click)="back()" />
+		<h1 class="text-over">Mensaje de Dedicatoria</h1>
+	</header>
+
+	<main class="overflow-y">
+		@defer {
+			<form [formGroup]="form">
+				<mat-form-field appearance="outline">
+					<mat-label>Mensaje</mat-label>
+					<textarea
+						matInput
+						cdkTextareaAutosize
+						#autosize="cdkTextareaAutosize"
+						cdkAutosizeMinRows="1"
+						cdkAutosizeMaxRows="10"
+						formControlName="textarea"
+						placeholder="Escribe el mensaje de dedicatoria..."
+						required
+						minlength="3"
+						maxlength="255"
+					>
+					</textarea>
+					@if (form.get('textarea')?.invalid && form.get('textarea')?.touched) {
+						<mat-error>{{ getErrorMessage(form.get('textarea')!) }}</mat-error>
+					}
+				</mat-form-field>
+			</form>
+		}
+	</main>
+
+	<footer>
+		<button type="button" [class.valid]="this.form.controls['textarea'].value" (click)="remove()">Borrar</button>
+		<button type="button" [class.valid]="this.form.valid" (click)="save()">Guardar</button>
+	</footer>
+</div>

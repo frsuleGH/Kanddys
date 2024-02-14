@@ -1,0 +1,47 @@
+<div class="viewport structure" style="background-color: #181d17">
+	<!-- TODO HEADER -->
+	<header>
+		<app-button [type]="'ICON'" icon="arrow_back_ios" [background]="'transparent'" (click)="back()" />
+		<h1>Reservación</h1>
+	</header>
+
+	<!-- TODO MAIN -->
+	<main class="overflow-y">
+		<h2>seleccione el <b>día</b> y <b>hora</b> de la reserva</h2>
+
+		@defer (when disabled !== undefined) {
+			<mat-calendar
+				[(selected)]="selected"
+				(selectedChange)="onDateChange($event)"
+				[dateFilter]="filter"
+				[minDate]="minDate"
+				[maxDate]="maxDate"
+				[headerComponent]="calendarHeader"
+			></mat-calendar>
+		} @placeholder {
+			Cargando...
+		}
+
+		<h3>{{ inDay }}</h3>
+
+		<section>
+			@if (day) {
+				@if (!request) {
+					@for (batch of calendar().batch; track $index) {
+						@if (batch.day.includes(day)) {
+							@if (configure(batch.to, calendar().delay)) {
+								@if (!reservation[$index] || batch.limit > reservation[$index]) {
+									<button type="button" (click)="save(batch.from, batch.to, $index)">
+										{{ batch.title }} ( {{ batch.from }} - {{ batch.to }} )
+									</button>
+								}
+							}
+						}
+					}
+				} @else {
+					Cargando...
+				}
+			}
+		</section>
+	</main>
+</div>
